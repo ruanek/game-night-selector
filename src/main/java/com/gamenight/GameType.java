@@ -1,0 +1,7 @@
+package com.gamenight;
+
+public enum GameType {
+
+    WORKER_PLACEMENT, RESOURCE_CONTROL, DECK_BUILDER, AREA_CONTROL, LEGACY, MYSTERY, COMBAT, NO_TYPE_DEFINED
+
+}
