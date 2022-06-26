@@ -16,12 +16,12 @@ on number of players, available games, game type preference. It will allow speci
      - game type preference `>= 1`
      - minGameTime preference (`can be null`)
      - Available game
-   - name
-   - type
-   - minPlayerCount
-   - maxPlayerCount
-   - minPlayerAge
-   - minGameTime
+       - name
+       - type
+       - minPlayerCount
+       - maxPlayerCount
+       - minPlayerAge
+       - minGameTime
    - played recently `optional: edit field dynamically if game is played for next game selection`
 
 3) PlayerInfo will be added to collection `# and  type TBD` 

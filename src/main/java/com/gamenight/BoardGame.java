@@ -12,12 +12,9 @@ public class BoardGame {
     private int maxPlayerCount;
     private int minPlayerAge;
     private int minGameTime;
-    private int averageGameTime;
-    private boolean alternateEditionOfAnotherGame;
-    private static int instanceCount = 0;
 
     public BoardGame() {
-        instanceCount++;
+
     }
 
     //Constructors
@@ -104,33 +101,6 @@ public class BoardGame {
         }
     }
 
-    public int getAverageGameTime() {
-        return averageGameTime;
-    }
-
-    public void setAverageGameTime(int averageGameTime) {
-        this.averageGameTime = averageGameTime;
-    }
-
-    public boolean isAlternateEditionOfAnotherGame() {
-        return alternateEditionOfAnotherGame;
-    }
-
-    public void setAlternateEditionOfAnotherGame(boolean alternateEditionOfAnotherGame) {
-        this.alternateEditionOfAnotherGame = alternateEditionOfAnotherGame;
-    }
-
-    public static int getInstanceCount() {
-        return instanceCount;
-    }
-//Business Method
-    public void canWePlay() {
-        if (getMinGameTime() <= 60 && getMaxPlayerCount() >= 6) {
-            System.out.printf("%nWe can Play: %s, it's a %s game!!!%n%n", getName(), getType());
-        } else
-            System.out.printf("We can't play %s tonight :( %n%n", getName());
-    }
-    //toString Override
     @Override
     public String toString() {
         return "BoardGame= " + name + '\n' +
@@ -138,9 +108,7 @@ public class BoardGame {
                 "minPlayerCount= " + minPlayerCount + '\n' +
                 "maxPlayerCount= " + maxPlayerCount + '\n' +
                 "minPlayerAge= " + minPlayerAge + " years old" + '\n' +
-                "minGameTime= " + minGameTime + " minutes" + '\n' +
-                "averageGameTime= " + averageGameTime + " minutes" + '\n' +
-                "alternateEditionOfAnotherGame= " + alternateEditionOfAnotherGame + '\n';
+                "minGameTime= " + minGameTime + " minutes" + '\n';
     }
 
 
