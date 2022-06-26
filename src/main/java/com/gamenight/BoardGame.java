@@ -3,7 +3,6 @@ package com.gamenight;
 public class BoardGame {
     //Final Fields
     public static final int MIN_PLAYER_AGE = 0;
-    public static final int MAX_PLAYER_AGE = 100;
     public static final int MIN_GAME_TIME = 0;
     //Fields
     private String name;
@@ -82,10 +81,10 @@ public class BoardGame {
 
     public void setMinPlayerAge(int minPlayerAge) {
 
-        if (minPlayerAge >= MIN_PLAYER_AGE && minPlayerAge <= MAX_PLAYER_AGE) {
+        if (minPlayerAge > MIN_PLAYER_AGE) {
             this.minPlayerAge = minPlayerAge;
         } else {
-            System.out.println(minPlayerAge + " is not a valid volume");
+            System.out.println(minPlayerAge + " is not a valid age");
         }
     }
 
@@ -94,7 +93,7 @@ public class BoardGame {
     }
 
     public void setMinGameTime(int minGameTime) {
-        if (minGameTime >= MIN_GAME_TIME) {
+        if (minGameTime > MIN_GAME_TIME) {
             this.minGameTime = minGameTime;
         } else {
             System.out.println(minGameTime + " is not valid, please set a value greater than 0");
