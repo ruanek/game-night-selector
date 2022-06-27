@@ -37,7 +37,8 @@ public class CSVParserGameNightSelector {
     }
     public static Set<BoardGame> getGameInfo() {
         String path = "src/main/resources/Games.csv";
-        Set<BoardGame> games = null;
+        // create a set of board games, using set to eliminate possible duplicate board games
+        Set<BoardGame> games = new HashSet<>();
 
         try (Reader in = new FileReader(path)) {
             for (CSVRecord row : CSVFormat.EXCEL.parse(in)) {
@@ -52,13 +53,7 @@ public class CSVParserGameNightSelector {
                 int minPlayerAge = Integer.parseInt(row.get(5));
                 int minGameTime = Integer.parseInt(row.get(6));
 
-                System.out.println("Name: " + playerName + ", Game: " + gameName +
-                        ", GameType: " + gameType + ", Min # Players: " + minPlayerCount
-                        + ", Max # Players: " + maxPlayerCount + ", Min Player Age: " + minPlayerAge
-                        + ", Min Game Time: " + minGameTime);
-
-                // create a set of board games, using set to eliminate possible duplicate board games
-                games = new HashSet<>();
+                // add the games to the set
                 games.add(new BoardGame(playerName, gameName, gameType, minPlayerCount, maxPlayerCount, minPlayerAge, minGameTime));
             }
         } catch (IOException e) {
@@ -68,7 +63,7 @@ public class CSVParserGameNightSelector {
     }
 
     public static void main(String[] args) {
-        getPlayerInfo();
+//        getPlayerInfo();
         getGameInfo();
     }
 }

@@ -92,16 +92,4 @@ public class BoardGame {
             System.out.println(minGameTime + " is not valid, please set a value greater than 0");
         }
     }
-
-    @Override
-    public String toString() {
-        return "BoardGame= " + gameName + '\n' +
-                "type= " + type + '\n' +
-                "minPlayerCount= " + minPlayerCount + '\n' +
-                "maxPlayerCount= " + maxPlayerCount + '\n' +
-                "minPlayerAge= " + minPlayerAge + " years old" + '\n' +
-                "minGameTime= " + minGameTime + " minutes" + '\n';
-    }
-
-
 }
