@@ -21,7 +21,7 @@ public class BoardGameTest {
         assert newGame1.getMinGameTime() == 30;
 
         BoardGame newGame2 = new BoardGame("Test Game 2", GameType.MYSTERY);
-        System.out.println(newGame2.getName());
+        System.out.println(newGame2.getGameName());
 
 
     }

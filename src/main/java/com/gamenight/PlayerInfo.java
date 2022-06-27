@@ -4,12 +4,18 @@ public class PlayerInfo {
 //Fields
     private String playerName;
     private int playerAge;
-    private GameType type;
-    private int playerMinGameTime;
-// Constructor (remove if only the default is needed)
+    private GameType gameType;
+
     public PlayerInfo() {
     }
-// Setters and Getters
+
+    public PlayerInfo(String playerName, int playerAge, GameType gameType) {
+        setPlayerName(playerName);
+        setPlayerAge(playerAge);
+        setGameType(gameType);
+    }
+
+    // Setters and Getters
     public String getPlayerName() {
         return playerName;
     }
@@ -26,21 +32,14 @@ public class PlayerInfo {
         this.playerAge = playerAge;
     }
 
-    public GameType getType() {
-        return type;
+    public GameType getGameType() {
+        return gameType;
     }
 
-    public void setType(GameType type) {
-        this.type = type;
+    public void setGameType(GameType gameType) {
+        this.gameType = gameType;
     }
 
-    public int getPlayerMinGameTime() {
-        return playerMinGameTime;
-    }
-
-    public void setPlayerMinGameTime(int playerMinGameTime) {
-        this.playerMinGameTime = playerMinGameTime;
-    }
 // TODO write business method(s) that we can call to add new players to hashmaps
 
 }
