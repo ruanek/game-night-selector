@@ -4,6 +4,8 @@ public class BoardGame {
     //Final Fields
     public static final int MIN_PLAYER_AGE = 0;
     public static final int MIN_GAME_TIME = 0;
+
+    private String playerName;
     //Fields
     private String gameName;
     private GameType type = GameType.NO_TYPE_DEFINED;
@@ -12,37 +14,28 @@ public class BoardGame {
     private int minPlayerAge;
     private int minGameTime;
 
-    public BoardGame() {
-
-    }
 
     //Constructors
-    public BoardGame(String gameName) {
-        this();
+    public BoardGame(String playerName, String gameName, GameType type, int minPlayerCount, int maxPlayerCount, int minPlayerAge, int minGameTime) {
+        setPlayerName(playerName);
         setGameName(gameName);
-    }
-
-    public BoardGame(String gameName, GameType type) {
-        this(gameName);
         setType(type);
-    }
-
-    public BoardGame(String gameName, GameType type, int minPlayerCount) {
-        this(gameName, type);
-        setMinPlayerCount(minPlayerCount);
-    }
-
-    public BoardGame(String gameName, GameType type, int minPlayerCount, int maxPlayerCount) {
-        this(gameName, type, minPlayerCount);
+        setMaxPlayerCount(minPlayerCount);
         setMaxPlayerCount(maxPlayerCount);
-    }
-
-    public BoardGame(String gameName, GameType type, int minPlayerCount, int maxPlayerCount, int minPlayerAge) {
-        this(gameName, type, minPlayerCount, maxPlayerCount);
         setMinPlayerAge(minPlayerAge);
+        setMinGameTime(minGameTime);
     }
 
     //Getters & Setters
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
     public String getGameName() {
         return gameName;
     }
