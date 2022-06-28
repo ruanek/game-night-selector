@@ -13,7 +13,8 @@ import java.util.Set;
 public class CSVParserGameNightSelector {
     public static ArrayList<PlayerInfo> getPlayerInfo() {
         String path = "src/main/resources/PlayerInfo.csv";
-        ArrayList<PlayerInfo> playersArray = null;
+        ArrayList<PlayerInfo> playersArray = new ArrayList<>();
+
 
         try (Reader in = new FileReader(path)) {
             for (CSVRecord row : CSVFormat.EXCEL.parse(in)) {
@@ -23,18 +24,14 @@ public class CSVParserGameNightSelector {
                 String name = row.get(0);
                 int age = Integer.parseInt(row.get(1));
                 GameType gameType = GameType.valueOf(row.get(2));
-                System.out.println("Name: " + name + ", Age: " + age + ", GameType: " + gameType);
-
-                playersArray = new ArrayList<>();
-                PlayerInfo player = new PlayerInfo(name, age, gameType);
-                playersArray.add(player);
+                playersArray.add(new PlayerInfo(name, age, gameType));
             }
-            return playersArray;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return playersArray;
     }
+
     public static Set<BoardGame> getGameInfo() {
         String path = "src/main/resources/Games.csv";
         // create a set of board games, using set to eliminate possible duplicate board games
@@ -55,6 +52,7 @@ public class CSVParserGameNightSelector {
 
                 // add the games to the set
                 games.add(new BoardGame(playerName, gameName, gameType, minPlayerCount, maxPlayerCount, minPlayerAge, minGameTime));
+
             }
         } catch (IOException e) {
             e.printStackTrace();
