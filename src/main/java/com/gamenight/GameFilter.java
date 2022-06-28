@@ -1,23 +1,42 @@
 package com.gamenight;
 
-import com.sun.security.jgss.GSSUtil;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 public class GameFilter {
-    // TODO call getPlayerInfo > figure out how selected players are being pushed
     private static ArrayList<PlayerInfo> playerInfoArray = CSVParserGameNightSelector.getPlayerInfo();
-    // TODO call getGameInfo > figure out how selected games are being filtered
     private static Set<BoardGame> games = CSVParserGameNightSelector.getGameInfo();
     private static ArrayList<PlayerInfo> playersInAttendance;
-    public static int getPlayerCount() {
-        return playersInAttendance.size();
+
+    public static ArrayList<BoardGame> filterGames() {
+        getPlayersInAttendance();
+        ArrayList<BoardGame> filteredGames = new ArrayList<>();
+        //  filter based on players selected and each players restrictions
+        //  Player count min ,Age restriction, game type preference list
+        for(BoardGame game : games) {
+            if(getPlayerNamesInAttendance().contains(game.getPlayerName())
+                    && getPlayerCount() < game.getMaxPlayerCount() && getPlayerCount() > game.getMinPlayerCount()
+                    && getAgeRestriction() > game.getMinPlayerAge()
+                    && getGameTypePreference().contains(game.getType())) {
+                filteredGames.add(game);
+            }
+        }
+        filteredGames.forEach((game) -> System.out.println(game.getPlayerName()));
+        return filteredGames;
     }
 
-    public static ArrayList<PlayerInfo> getPlayersInAttendance() {
+    public BoardGame pickAGame() {
+        BoardGame game = null;
+        // create random number generator
+
+        // use random number to pick a game in the filtered array
+        return game;
+    }
+
+    // helper methods
+    private static ArrayList<PlayerInfo> getPlayersInAttendance() {
         if (playersInAttendance == null) {
             System.out.println("List the players that will be in attendance, separate each player by comma's : ");
             System.out.println("Example: Bill,Bob,Larry");
@@ -36,9 +55,11 @@ public class GameFilter {
         return playersInAttendance;
     }
 
+    private static int getPlayerCount() {
+        return playersInAttendance.size();
+    }
 
-
-    public static int getAgeRestriction() {
+    private static int getAgeRestriction() {
         int minAge = Integer.MAX_VALUE;
         for(PlayerInfo player : playersInAttendance) {
             minAge = Math.min(player.getPlayerAge(), minAge);
@@ -46,7 +67,7 @@ public class GameFilter {
         return minAge;
     }
 
-    public static Set<GameType> gameTypePreference() {
+    private static Set<GameType> getGameTypePreference() {
         Set<GameType> gameTypes = new HashSet<>();
         for(PlayerInfo player : playersInAttendance) {
             gameTypes.add(player.getGameType());
@@ -54,40 +75,27 @@ public class GameFilter {
         return gameTypes;
     }
 
-
-
-    public void filterGames() {
-
-
-        for(BoardGame game : games) {
+    private static Set<String> getPlayerNamesInAttendance() {
+        Set<String> playerNamesInAttendance = new HashSet<>();
+        for(PlayerInfo player : playersInAttendance) {
+            playerNamesInAttendance.add(player.getPlayerName());
         }
-        //  filter based on players selected > use that list to determine
-        //  1) Player count
-        //  2) minAge restriction
-        //  3) game type preference list
-
-        //TODO Call getGameInfo > remove games that dont meet 1, 2, or 3
-
-        //TODO Shuffle games
-        // rng > pick game
-
-
+        return playerNamesInAttendance;
     }
 
     public static void main(String[] args) {
-        getPlayersInAttendance();
+//
+//        int playerCount = getPlayerCount();
+//        System.out.printf("\n\nPlayer Count is: %d", playerCount);
+//
+//        int age = getAgeRestriction();
+//        System.out.printf("\n\nAge restriction is: %d", age);
+//
+//        Set<GameType> gameType = getGameTypePreference();
+//        System.out.println("\n\nThese are the following Game Types to choose from base on Players in attendance");
+//        gameType.forEach((g) -> System.out.println(g));
 
-        int playerCount = getPlayerCount();
-        System.out.printf("Player Count is: %d", playerCount);
-        System.out.println();
-
-        int age = getAgeRestriction();
-        System.out.printf("Age restriction is: %d", age);
-        System.out.println();
-
-        Set<GameType> gameType = gameTypePreference();
-        System.out.println("These are the following Game Types to choose from base on Players in attendance");
-        gameType.forEach((g) -> System.out.println(g));
-        System.out.println();
+        System.out.println("\n\n");
+        filterGames();
     }
 }
