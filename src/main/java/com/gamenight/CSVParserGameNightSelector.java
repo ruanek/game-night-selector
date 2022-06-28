@@ -59,9 +59,4 @@ public class CSVParserGameNightSelector {
         }
         return games;
     }
-
-    public static void main(String[] args) {
-        getPlayerInfo();
-        getGameInfo();
-    }
 }
