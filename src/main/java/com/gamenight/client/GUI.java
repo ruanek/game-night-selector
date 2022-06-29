@@ -51,7 +51,14 @@ public class GUI implements ActionListener {
 
 
         JButton button = new JButton("Choose Game");
-        button.addActionListener(this);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog dialog = new JDialog(frame, "This is tonight's game!", true);
+                dialog.setLocationRelativeTo(frame);
+                dialog.setVisible(true);
+            }
+        });
         button.setBackground(Color.PINK);
         button.setForeground(Color.BLACK);
 
