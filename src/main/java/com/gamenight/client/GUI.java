@@ -1,4 +1,4 @@
-package com.gamenight;
+package com.gamenight.client;
 
 import javax.swing.*;
 import java.awt.*;
