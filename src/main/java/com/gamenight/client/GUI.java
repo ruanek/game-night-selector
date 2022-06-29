@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class GUI implements ActionListener {
@@ -12,42 +11,58 @@ public class GUI implements ActionListener {
     private JLabel label;
     private JFrame frame;
     private JPanel panel;
+    // TODO declare a set that will hold selected players
 
     public GUI() {
         frame = new JFrame();
         label = new JLabel("Choose Players");
+        // TODO initialize set of player
+        ActionListener checkboxListener = (event) -> {
+            JCheckBox source = (JCheckBox) event.getSource();
+            System.out.println(source.isSelected()); // FIXME remove this output
+            System.out.println(source.getText()); //FIXME remove this output
+            // TODO Add or remove player associated with button from the set of selected players
+        };
+
 
         JCheckBox billButton = new JCheckBox("Bill");
-        billButton.setMnemonic(KeyEvent.VK_C);
         billButton.setSelected(false);
+        billButton.addActionListener(checkboxListener);
 
         JCheckBox bobButton = new JCheckBox("Bob");
-        bobButton.setMnemonic(KeyEvent.VK_C);
         bobButton.setSelected(false);
+        bobButton.addActionListener(checkboxListener);
+
 
         JCheckBox carrieButton = new JCheckBox("Carrie");
-        carrieButton.setMnemonic(KeyEvent.VK_C);
         carrieButton.setSelected(false);
+        carrieButton.addActionListener(checkboxListener);
+
 
         JCheckBox janeButton = new JCheckBox("Jane");
-        janeButton.setMnemonic(KeyEvent.VK_C);
         janeButton.setSelected(false);
+        janeButton.addActionListener(checkboxListener);
+
 
         JCheckBox joeButton = new JCheckBox("Joe");
-        joeButton.setMnemonic(KeyEvent.VK_C);
         joeButton.setSelected(false);
+        joeButton.addActionListener(checkboxListener);
+
 
         JCheckBox josephButton = new JCheckBox("Joseph");
-        josephButton.setMnemonic(KeyEvent.VK_C);
         josephButton.setSelected(false);
+        josephButton.addActionListener(checkboxListener);
+
 
         JCheckBox robButton = new JCheckBox("Rob");
-        robButton.setMnemonic(KeyEvent.VK_C);
         robButton.setSelected(false);
+        robButton.addActionListener(checkboxListener);
+
 
         JCheckBox timButton = new JCheckBox("Tim");
-        timButton.setMnemonic(KeyEvent.VK_C);
         timButton.setSelected(false);
+        timButton.addActionListener(checkboxListener);
+
 
 
         JButton button = new JButton("Choose Game");
