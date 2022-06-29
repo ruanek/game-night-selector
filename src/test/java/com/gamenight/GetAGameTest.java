@@ -7,10 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class GetAGameTest {
 
     @Test
-    void filterGames() {
-    }
-
-    @Test
     void pickAGame() {
     }
 }

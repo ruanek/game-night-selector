@@ -6,9 +6,6 @@ public class PlayerInfo {
     private int playerAge;
     private GameType gameType;
 
-    public PlayerInfo() {
-    }
-
     public PlayerInfo(String playerName, int playerAge, GameType gameType) {
         setPlayerName(playerName);
         setPlayerAge(playerAge);
@@ -39,7 +36,5 @@ public class PlayerInfo {
     public void setGameType(GameType gameType) {
         this.gameType = gameType;
     }
-
-// TODO write business method(s) that we can call to add new players to hashmaps
 
 }
