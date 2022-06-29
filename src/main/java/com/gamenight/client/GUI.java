@@ -1,6 +1,7 @@
 package com.gamenight.client;
 
 import com.gamenight.CSVParserGameNightSelector;
+import com.gamenight.GetAGame;
 import com.gamenight.PlayerInfo;
 
 import javax.swing.*;
@@ -8,6 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GUI implements ActionListener {
     private JLabel label;
@@ -16,9 +19,12 @@ public class GUI implements ActionListener {
 
     public GUI() {
         ArrayList<PlayerInfo> playersArray = CSVParserGameNightSelector.getPlayerInfo();
-        frame = new JFrame();
+        ArrayList<PlayerInfo> playersInAttendance = new ArrayList<>();
+        Map<String, PlayerInfo> playersMap = new HashMap<>();
+
         label = new JLabel("Choose Players");
         panel = new JPanel();
+        frame = new JFrame();
 
         JButton chooseGameButton = new JButton("Choose Game");
         chooseGameButton.setBackground(Color.PINK);
@@ -30,7 +36,7 @@ public class GUI implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog(frame, "This is tonight's game!", true);
-                dialog.setBounds(500,500,500,500);
+                dialog.setBounds(300, 300, 300, 300);
                 dialog.setLocationRelativeTo(frame);
                 dialog.setVisible(true);
             }
@@ -39,15 +45,28 @@ public class GUI implements ActionListener {
         ActionListener checkboxListener = (event) -> {
             JCheckBox source = (JCheckBox) event.getSource();
             System.out.printf("Checkbox %s is selected: %s\n", source.getText(), source.isSelected());
-            // TODO Add or remove player associated with button from the set of selected players
+            // if the JCheckBox isSelected, add that player to the playersInAttendance array
+            // else JCheckBox isSelected is false, remove that player from the array
+            if(source.isSelected()) {
+                playersInAttendance.add(playersMap.get(source.getText()));
+                System.out.printf("Player %s was added to the playersInAttendance Array\n\n", playersMap.get(source.getText()).getPlayerName());
+            } else {
+                playersInAttendance.remove(playersMap.get(source.getText()));
+                System.out.printf("Player %s was removed from the playersInAttendance Array\n\n", playersMap.get(source.getText()).getPlayerName());
+            }
         };
+
         panel.add(label);
-        for(PlayerInfo player : playersArray) {
+        // create all of JCheckBox objects and add them to the panel, set them to unchecked by default
+        // add each playersName, PlayerInfo obj reference as (k,v) pairs in a playersMap
+        for (PlayerInfo player : playersArray) {
             JCheckBox playerCheckbox = new JCheckBox(player.getPlayerName());
             playerCheckbox.setSelected(false);
             playerCheckbox.addActionListener(checkboxListener);
             panel.add(playerCheckbox);
+            playersMap.put(player.getPlayerName(), player);
         }
+        // add choose game button at the bottom of the gui
         panel.add(chooseGameButton);
 
 
@@ -55,6 +74,7 @@ public class GUI implements ActionListener {
         frame.setTitle("Game Night Selector");
         frame.pack();
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {
