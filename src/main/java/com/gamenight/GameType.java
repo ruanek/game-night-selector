@@ -7,7 +7,6 @@ public enum GameType {
     AREA_CONTROL,
     COOPERATIVE,
     ASYMMETRICAL,
-    COMBAT,
     HIDDEN_ROLES,
     PATTERN_BUILDING,
     DEDUCTION,

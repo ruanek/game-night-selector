@@ -3,8 +3,6 @@ package com.gamenight;
 public class BoardGame {
     //Final Fields
     public static final int MIN_PLAYER_AGE = 0;
-    public static final int MIN_GAME_TIME = 0;
-
     private String playerName;
     //Fields
     private String gameName;
@@ -12,18 +10,15 @@ public class BoardGame {
     private int minPlayerCount;
     private int maxPlayerCount;
     private int minPlayerAge;
-    private int minGameTime;
-
 
     //Constructors
-    public BoardGame(String playerName, String gameName, GameType type, int minPlayerCount, int maxPlayerCount, int minPlayerAge, int minGameTime) {
+    public BoardGame(String playerName, String gameName, GameType type, int minPlayerCount, int maxPlayerCount, int minPlayerAge) {
         setPlayerName(playerName);
         setGameName(gameName);
         setType(type);
-        setMaxPlayerCount(minPlayerCount);
+        setMinPlayerCount(minPlayerCount);
         setMaxPlayerCount(maxPlayerCount);
         setMinPlayerAge(minPlayerAge);
-        setMinGameTime(minGameTime);
     }
 
     //Getters & Setters
@@ -78,18 +73,6 @@ public class BoardGame {
             this.minPlayerAge = minPlayerAge;
         } else {
             System.out.println(minPlayerAge + " is not a valid age");
-        }
-    }
-
-    public int getMinGameTime() {
-        return minGameTime;
-    }
-
-    public void setMinGameTime(int minGameTime) {
-        if (minGameTime > MIN_GAME_TIME) {
-            this.minGameTime = minGameTime;
-        } else {
-            System.out.println(minGameTime + " is not valid, please set a value greater than 0");
         }
     }
 }

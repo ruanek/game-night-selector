@@ -48,10 +48,9 @@ public class CSVParserGameNightSelector {
                 int minPlayerCount = Integer.parseInt(row.get(3));
                 int maxPlayerCount = Integer.parseInt(row.get(4));
                 int minPlayerAge = Integer.parseInt(row.get(5));
-                int minGameTime = Integer.parseInt(row.get(6));
 
                 // add the games to the set
-                games.add(new BoardGame(playerName, gameName, gameType, minPlayerCount, maxPlayerCount, minPlayerAge, minGameTime));
+                games.add(new BoardGame(playerName, gameName, gameType, minPlayerCount, maxPlayerCount, minPlayerAge));
 
             }
         } catch (IOException e) {

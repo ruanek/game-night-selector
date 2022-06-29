@@ -10,7 +10,34 @@ public class GetAGame {
     private static final Set<BoardGame> games = CSVParserGameNightSelector.getGameInfo();
     private static ArrayList<PlayerInfo> playersInAttendance;
 
-    public static ArrayList<BoardGame> filterGames() {
+    public static BoardGame pickAGame() {
+        // create random number generator between 0 - Array.size()
+        int randomNumber = (int) (Math.random() * filterGames().size());
+
+        // use random number to pick a game in the filtered array
+        try {
+            return filterGames().get(randomNumber);
+        } catch (Exception e) {
+            throw new IndexOutOfBoundsException(String.valueOf(e));
+        }
+    }
+
+    // helper methods
+
+    private static void getPlayersInAttendance() {
+        if (playersInAttendance == null) {
+            playersInAttendance = new ArrayList<>();
+            for (PlayerInfo player : playerInfoArray) {
+                System.out.printf("Is: %s playing? (enter 'y' for yes or 'n' for no) ", player.getPlayerName());
+                Scanner scanner = new Scanner(System.in);
+                String input = scanner.nextLine();
+                if (input.equals("y")) {
+                    playersInAttendance.add(player);
+                }
+            }
+        }
+    }
+    private static ArrayList<BoardGame> filterGames() {
         getPlayersInAttendance();
         ArrayList<BoardGame> filteredGames = new ArrayList<>();
         //  filter based on players selected and each players restrictions
@@ -24,33 +51,6 @@ public class GetAGame {
             }
         }
         return filteredGames;
-    }
-
-    public static BoardGame pickAGame() {
-        // create random number generator between 0 - Array.size()
-        int randomNumber = (int) (Math.random() * filterGames().size());
-
-        // use random number to pick a game in the filtered array
-        return filterGames().get(randomNumber);
-    }
-
-    // helper methods
-    private static void getPlayersInAttendance() {
-        if (playersInAttendance == null) {
-            System.out.println("List the players that will be in attendance, separate each player by comma's : ");
-            System.out.println("Example: Bill,Bob,Larry");
-            Scanner scanner = new Scanner(System.in);
-            String[] playersInAttendanceInput = scanner.nextLine().split(",");
-            playersInAttendance = new ArrayList<>();
-
-            for (String currentPlayer : playersInAttendanceInput) {
-                for (PlayerInfo player : playerInfoArray) {
-                    if (player.getPlayerName().equals(currentPlayer)) {
-                        playersInAttendance.add(player);
-                    }
-                }
-            }
-        }
     }
 
     private static int getPlayerCountInAttendance() {
