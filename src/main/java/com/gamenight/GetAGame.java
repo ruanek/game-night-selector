@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GetAGame {
-    private static final Set<BoardGame> games = CSVParserGameNightSelector.getGameInfo();
+    private static final Set<BoardGame> games = CSVParser.getGameInfo();
 
     public static BoardGame pickAGame(ArrayList<PlayerInfo> playersInAttendanceArray) {
         // create random number generator between 0 - Array.size()
@@ -37,7 +37,6 @@ public class GetAGame {
                 filteredGames.add(game);
             }
         }
-        filteredGames.forEach((game) -> System.out.println(game.getGameName()));
         return filteredGames;
     }
 

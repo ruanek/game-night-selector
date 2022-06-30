@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CSVParserGameNightSelector {
+public class CSVParser {
     public static ArrayList<PlayerInfo> getPlayerInfo() {
         String path = "src/main/resources/PlayerInfo.csv";
         ArrayList<PlayerInfo> playersArray = new ArrayList<>();
-
 
         try (Reader in = new FileReader(path)) {
             for (CSVRecord row : CSVFormat.EXCEL.parse(in)) {

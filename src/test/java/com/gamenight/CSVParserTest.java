@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CSVParserGameNightSelectorTest {
+class CSVParserTest {
 
     @Test
     void getPlayerInfo() {
