@@ -9,28 +9,31 @@ public class GetAGame {
 
     public static BoardGame pickAGame(ArrayList<PlayerInfo> playersInAttendanceArray) {
         // create random number generator between 0 - Array.size()
-        int randomNumber = (int) (Math.random() * filterGames(playersInAttendanceArray).size());
+        ArrayList<BoardGame> filteredGames = filterGames(playersInAttendanceArray);
+        int randomNumber = (int) (Math.random() * filteredGames.size());
 
-        // use random number to pick a game in the filtered array
+        // use random number to pick a game in the filtered array, if there is no compatible game, throw an exception
         try {
-            return filterGames(playersInAttendanceArray).get(randomNumber);
-        } catch (Exception e) {
-            System.out.println("There is no compatible game for this specific combination of players");
-            throw new IndexOutOfBoundsException("Out of bounds because the array of filtered games is empty");
+            return filteredGames.get(randomNumber);
+        } catch (IndexOutOfBoundsException e) {
+            // return null because I want to actually display something different on the GUI
+            // I can't do that if it throws an Error
+            return null;
         }
     }
 
     // helper methods
     static ArrayList<BoardGame> filterGames(ArrayList<PlayerInfo> playersInAttendanceArray) {
         ArrayList<BoardGame> filteredGames = new ArrayList<>();
-        //  filter based on players selected and each players restrictions
-        //  Player count min ,Age restriction, game type preference list
+        //  filter based on players in attendance and each player's restrictions
+        //  Restrictions are Player Count Min, Player Count Max, Age restriction, Game Type Preference
         for (BoardGame game : games) {
             if (getPlayerNamesInAttendance(playersInAttendanceArray).contains(game.getPlayerName())
                     && getPlayerCountInAttendance(playersInAttendanceArray) <= game.getMaxPlayerCount()
                     && getPlayerCountInAttendance(playersInAttendanceArray) >= game.getMinPlayerCount()
-                    && getAgeRestrictionInAttendance(playersInAttendanceArray) > game.getMinPlayerAge()
-                    && getGameTypePreferenceInAttendance(playersInAttendanceArray).contains(game.getType())) {
+                    && getAgeRestrictionInAttendance(playersInAttendanceArray) >= game.getMinPlayerAge()
+                    && getGameTypePreferenceInAttendance(playersInAttendanceArray).contains(game.getType())
+            ) {
                 filteredGames.add(game);
             }
         }
