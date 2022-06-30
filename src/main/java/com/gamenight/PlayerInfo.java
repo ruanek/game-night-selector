@@ -1,7 +1,7 @@
 package com.gamenight;
 
 public class PlayerInfo {
-//Fields
+    //Fields
     private String playerName;
     private int playerAge;
     private GameType gameType;

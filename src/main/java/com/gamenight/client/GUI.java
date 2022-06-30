@@ -1,7 +1,7 @@
 package com.gamenight.client;
 
 import com.gamenight.BoardGame;
-import com.gamenight.CSVParserGameNightSelector;
+import com.gamenight.CSVParser;
 import com.gamenight.GetAGame;
 import com.gamenight.PlayerInfo;
 
@@ -15,7 +15,7 @@ public class GUI {
     private final JFrame frame = new JFrame();
 
     public GUI() {
-        ArrayList<PlayerInfo> playersArray = CSVParserGameNightSelector.getPlayerInfo();
+        ArrayList<PlayerInfo> playersArray = CSVParser.getPlayerInfo();
         ArrayList<PlayerInfo> playersInAttendance = new ArrayList<>();
         Map<String, PlayerInfo> playersMap = new HashMap<>();
 
@@ -34,35 +34,29 @@ public class GUI {
         // create chooseGameButton Action Listener with a lambda expression
         chooseGameButton.addActionListener((event) -> {
             StringBuilder printMe = new StringBuilder();
-            System.out.printf("PlayersInAttendance Array Size: %d\n", playersInAttendance.size());
-            System.out.print("[ ");
             int i = 0;
             for (PlayerInfo playerInfo : playersInAttendance) {
                 if (i == playersInAttendance.size() - 1) {
-                    System.out.print(playerInfo.getPlayerName());
                     printMe.append(playerInfo.getPlayerName());
                 } else {
-                    System.out.print(playerInfo.getPlayerName() + ", ");
                     printMe.append(playerInfo.getPlayerName()).append(", ");
                 }
                 i++;
             }
-            printMe.append(" will be playing");
-            System.out.print(" ]\n");
+            printMe.append(" will be playing:");
 
 
             BoardGame game = GetAGame.pickAGame(playersInAttendance);
             // ternary to decide gameName
             String gameName = (game != null)
                     ? game.getGameName()
-                    : "There is no compatible game for this specific\ncombination of players";
+                    : "There is no compatible game for this specific combination of players";
 
             JDialog dialog = new JDialog(frame, String.valueOf(printMe), true);
             dialog.setBounds(300, 300, 400, 200);
             dialog.setLocationRelativeTo(frame);
             dialog.add(new JLabel(gameName, JLabel.CENTER));
             dialog.setVisible(true);
-            System.out.printf("The game we will be playing is: %s\n", gameName);
         });
 
         // create all of JCheckBox objects and add them to the panel, set them to unchecked by default
@@ -73,15 +67,12 @@ public class GUI {
             // create playerCheckBox Action Listener with a lambda expression
             playerCheckbox.addActionListener((event) -> {
                 JCheckBox source = (JCheckBox) event.getSource();
-                System.out.printf("Checkbox %s is selected: %s\n", source.getText(), source.isSelected());
                 // if the JCheckBox isSelected, add that player to the playersInAttendance array
                 // else JCheckBox isSelected is false, remove that player from the array
                 if (source.isSelected()) {
                     playersInAttendance.add(playersMap.get(source.getText()));
-                    System.out.printf("Player %s was added to the playersInAttendance Array\n\n", playersMap.get(source.getText()).getPlayerName());
                 } else {
                     playersInAttendance.remove(playersMap.get(source.getText()));
-                    System.out.printf("Player %s was removed from the playersInAttendance Array\n\n", playersMap.get(source.getText()).getPlayerName());
                 }
             });
             // add the completed checkbox to the gui and populate the map with it's (k,v)
@@ -111,7 +102,7 @@ public class GUI {
         container.repaint();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new GUI();
     }
 }

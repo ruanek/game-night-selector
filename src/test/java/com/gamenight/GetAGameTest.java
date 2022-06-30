@@ -12,9 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetAGameTest {
     ArrayList<PlayerInfo> playersInAttendanceArray;
-    static ArrayList<PlayerInfo> playersArray = CSVParserGameNightSelector.getPlayerInfo();
+    static ArrayList<PlayerInfo> playersArray = CSVParser.getPlayerInfo();
 
     static Map<String, PlayerInfo> playersMap;
+
     static {
         playersMap = new HashMap<>();
         for (PlayerInfo player : playersArray) {
@@ -34,8 +35,8 @@ class GetAGameTest {
     @Test
     void filterGamesTest() {
         ArrayList<BoardGame> filteredGames = filterGames(playersInAttendanceArray);
-        assertEquals("Terraforming-Mars",filteredGames.get(0).getGameName());
-        assertEquals("Dune",filteredGames.get(1).getGameName());
+        assertEquals("Terraforming-Mars", filteredGames.get(0).getGameName());
+        assertEquals("Dune", filteredGames.get(1).getGameName());
 
         playersInAttendanceArray.add(playersMap.get("Joe"));
         filteredGames = filterGames(playersInAttendanceArray);
@@ -69,9 +70,9 @@ class GetAGameTest {
 
     @Test
     void getGameTypePreferenceInAttendanceTest() {
-        assertEquals(playersInAttendanceArray.get(0).getGameType(),GameType.RESOURCE_CONTROL); // Bob's game type
-        assertEquals(playersInAttendanceArray.get(1).getGameType(),GameType.DECK_BUILDER); // Bill's game type
-        assertEquals(playersInAttendanceArray.get(2).getGameType(),GameType.PATTERN_BUILDING); // Tim's game type
+        assertEquals(playersInAttendanceArray.get(0).getGameType(), GameType.RESOURCE_CONTROL); // Bob's game type
+        assertEquals(playersInAttendanceArray.get(1).getGameType(), GameType.DECK_BUILDER); // Bill's game type
+        assertEquals(playersInAttendanceArray.get(2).getGameType(), GameType.PATTERN_BUILDING); // Tim's game type
     }
 
     @Test
