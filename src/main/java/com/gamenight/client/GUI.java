@@ -1,5 +1,6 @@
 package com.gamenight.client;
 
+import com.gamenight.BoardGame;
 import com.gamenight.CSVParserGameNightSelector;
 import com.gamenight.GetAGame;
 import com.gamenight.PlayerInfo;
@@ -49,7 +50,13 @@ public class GUI {
             printMe.append(" will be playing");
             System.out.print(" ]\n");
 
-            String gameName = GetAGame.pickAGame(playersInAttendance).getGameName();
+
+            BoardGame game = GetAGame.pickAGame(playersInAttendance);
+            // ternary to decide gameName
+            String gameName = (game != null)
+                    ? game.getGameName()
+                    : "There is no compatible game for this specific\ncombination of players";
+
             JDialog dialog = new JDialog(frame, String.valueOf(printMe), true);
             dialog.setBounds(300, 300, 400, 200);
             dialog.setLocationRelativeTo(frame);
