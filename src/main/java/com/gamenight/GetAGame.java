@@ -5,9 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GetAGame {
-    // TODO delete playerInfoArray, write tests for filterGames and IndexOutOfBounds
-    private static final ArrayList<PlayerInfo> playerInfoArray = CSVParserGameNightSelector.getPlayerInfo();
     private static final Set<BoardGame> games = CSVParserGameNightSelector.getGameInfo();
+
     public static BoardGame pickAGame(ArrayList<PlayerInfo> playersInAttendanceArray) {
         // create random number generator between 0 - Array.size()
         int randomNumber = (int) (Math.random() * filterGames(playersInAttendanceArray).size());
@@ -22,7 +21,7 @@ public class GetAGame {
     }
 
     // helper methods
-    private static ArrayList<BoardGame> filterGames(ArrayList<PlayerInfo> playersInAttendanceArray) {
+    static ArrayList<BoardGame> filterGames(ArrayList<PlayerInfo> playersInAttendanceArray) {
         ArrayList<BoardGame> filteredGames = new ArrayList<>();
         //  filter based on players selected and each players restrictions
         //  Player count min ,Age restriction, game type preference list
@@ -35,15 +34,15 @@ public class GetAGame {
                 filteredGames.add(game);
             }
         }
-       filteredGames.forEach((game) -> System.out.println(game.getGameName()));
+        filteredGames.forEach((game) -> System.out.println(game.getGameName()));
         return filteredGames;
     }
 
-    private static int getPlayerCountInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
+    static int getPlayerCountInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
         return playersInAttendanceArray.size();
     }
 
-    private static int getAgeRestrictionInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
+    static int getAgeRestrictionInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
         int minAge = Integer.MAX_VALUE;
         for (PlayerInfo player : playersInAttendanceArray) {
             minAge = Math.min(player.getPlayerAge(), minAge);
@@ -51,7 +50,7 @@ public class GetAGame {
         return minAge;
     }
 
-    private static Set<GameType> getGameTypePreferenceInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
+    static Set<GameType> getGameTypePreferenceInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
         Set<GameType> gameTypes = new HashSet<>();
         for (PlayerInfo player : playersInAttendanceArray) {
             gameTypes.add(player.getGameType());
@@ -59,7 +58,7 @@ public class GetAGame {
         return gameTypes;
     }
 
-    private static Set<String> getPlayerNamesInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
+    static Set<String> getPlayerNamesInAttendance(ArrayList<PlayerInfo> playersInAttendanceArray) {
         Set<String> playerNamesInAttendance = new HashSet<>();
         for (PlayerInfo player : playersInAttendanceArray) {
             playerNamesInAttendance.add(player.getPlayerName());

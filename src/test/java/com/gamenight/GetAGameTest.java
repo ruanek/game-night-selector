@@ -6,7 +6,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetAGameTest {
 
+
     @Test
-    void pickAGame() {
+    void filterGames() {
+    }
+
+    @Test
+    void getPlayerCountInAttendance() {
+    }
+
+    @Test
+    void getAgeRestrictionInAttendance() {
+    }
+
+    @Test
+    void getGameTypePreferenceInAttendance() {
+    }
+
+    @Test
+    void getPlayerNamesInAttendance() {
     }
 }
