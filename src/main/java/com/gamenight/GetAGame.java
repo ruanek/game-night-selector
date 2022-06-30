@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GetAGame {
+    // TODO delete playerInfoArray, write tests for filterGames and IndexOutOfBounds
     private static final ArrayList<PlayerInfo> playerInfoArray = CSVParserGameNightSelector.getPlayerInfo();
     private static final Set<BoardGame> games = CSVParserGameNightSelector.getGameInfo();
     public static BoardGame pickAGame(ArrayList<PlayerInfo> playersInAttendanceArray) {

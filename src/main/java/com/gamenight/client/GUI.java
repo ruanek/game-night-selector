@@ -18,9 +18,12 @@ public class GUI {
         ArrayList<PlayerInfo> playersInAttendance = new ArrayList<>();
         Map<String, PlayerInfo> playersMap = new HashMap<>();
 
+        JPanel container = new JPanel();
+        container.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        container.add(new JLabel("Choose Players"));
+
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Choose Players"));
-        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
 
         // create JButton that we will click and this will filter out the games
@@ -79,17 +82,18 @@ public class GUI {
             playersMap.put(player.getPlayerName(), player);
         }
 
+        container.add(panel);
         // add image to panel
         String path = "src/main/resources/game-night-image.jpeg";
         ImageIcon image = new ImageIcon(path);
         JLabel imageLabel = new JLabel(image);
-        imageLabel.setPreferredSize(new Dimension(540, 360));
-        panel.add(imageLabel);
+        imageLabel.setPreferredSize(new Dimension(340, 160));
+        container.add(imageLabel);
 
         // add choose game button at the bottom of the gui
-        panel.add(chooseGameButton);
+        container.add(chooseGameButton);
 
-        frame.add(panel, BorderLayout.CENTER);
+        frame.add(container, BorderLayout.CENTER);
         frame.setTitle("Game Night Selector");
         frame.pack();
         frame.setSize(400, 800);
@@ -97,6 +101,7 @@ public class GUI {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        container.repaint();
     }
 
     public static void main(String[] args){
