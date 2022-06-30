@@ -1,7 +1,6 @@
 package com.gamenight.client;
 
 import com.gamenight.CSVParserGameNightSelector;
-import com.gamenight.GetAGame;
 import com.gamenight.PlayerInfo;
 
 import javax.swing.*;
@@ -35,10 +34,14 @@ public class GUI implements ActionListener {
         chooseGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(frame, "This is tonight's game!", true);
-                dialog.setBounds(300, 300, 300, 300);
-                dialog.setLocationRelativeTo(frame);
-                dialog.setVisible(true);
+//                JDialog dialog = new JDialog(frame, "This is tonight's game!", true);
+//                dialog.setBounds(300, 300, 300, 300);
+//                dialog.setLocationRelativeTo(frame);
+//                dialog.setVisible(true);
+                JOptionPane.showMessageDialog(frame,
+                        "Tonight's Lucky Game is...",
+                        "Game Night Selector",
+                        JOptionPane.PLAIN_MESSAGE);
             }
         });
 
@@ -47,7 +50,7 @@ public class GUI implements ActionListener {
             System.out.printf("Checkbox %s is selected: %s\n", source.getText(), source.isSelected());
             // if the JCheckBox isSelected, add that player to the playersInAttendance array
             // else JCheckBox isSelected is false, remove that player from the array
-            if(source.isSelected()) {
+            if (source.isSelected()) {
                 playersInAttendance.add(playersMap.get(source.getText()));
                 System.out.printf("Player %s was added to the playersInAttendance Array\n\n", playersMap.get(source.getText()).getPlayerName());
             } else {
@@ -68,7 +71,6 @@ public class GUI implements ActionListener {
         }
         // add choose game button at the bottom of the gui
         panel.add(chooseGameButton);
-
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setTitle("Game Night Selector");
