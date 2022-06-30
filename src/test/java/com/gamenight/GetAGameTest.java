@@ -64,7 +64,7 @@ class GetAGameTest {
         // expected value should have changed to the youngest player which is Joe
         playersInAttendanceArray.add(playersMap.get("Joe"));
         ageRestriction = getAgeRestrictionInAttendance(playersInAttendanceArray);
-        assertEquals(11, ageRestriction);
+        assertEquals(5, ageRestriction);
     }
 
     @Test
