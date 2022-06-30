@@ -27,13 +27,14 @@ public class GetAGame {
         //  Player count min ,Age restriction, game type preference list
         for (BoardGame game : games) {
             if (getPlayerNamesInAttendance(playersInAttendanceArray).contains(game.getPlayerName())
-                    && getPlayerCountInAttendance(playersInAttendanceArray) < game.getMaxPlayerCount() && getPlayerCountInAttendance(playersInAttendanceArray) > game.getMinPlayerCount()
+                    && getPlayerCountInAttendance(playersInAttendanceArray) <= game.getMaxPlayerCount()
+                    && getPlayerCountInAttendance(playersInAttendanceArray) >= game.getMinPlayerCount()
                     && getAgeRestrictionInAttendance(playersInAttendanceArray) > game.getMinPlayerAge()
                     && getGameTypePreferenceInAttendance(playersInAttendanceArray).contains(game.getType())) {
                 filteredGames.add(game);
             }
         }
-//        filteredGames.forEach((game) -> System.out.println(game.getGameName()));
+       filteredGames.forEach((game) -> System.out.println(game.getGameName()));
         return filteredGames;
     }
 
