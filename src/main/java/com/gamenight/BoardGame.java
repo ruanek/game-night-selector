@@ -22,7 +22,6 @@ public class BoardGame {
     }
 
     //Getters & Setters
-
     public String getPlayerName() {
         return playerName;
     }
