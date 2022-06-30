@@ -7,8 +7,8 @@ public class ConsoleClient {
 
 
     public static void main(String[] args) {
-        BoardGame game = GetAGame.pickAGame();
-        System.out.printf("The Game Selected is = %s", game.getGameName());
+//        BoardGame game = GetAGame.pickAGame(playersInAttendanceArray);
+//        System.out.printf("The Game Selected is = %s", game.getGameName());
     }
 }
 
